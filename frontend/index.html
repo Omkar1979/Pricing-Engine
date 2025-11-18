@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Inventory & Pricing Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Inventory & Pricing Engine</h1>
+        </header>
+
+        <main>
+            <section class="product-section">
+                <div class="section-header">
+                    <h2>Products</h2>
+                    <button class="btn btn-primary" onclick="openAddProductModal()">Add New Product</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Cost Price</th>
+                                <th>Selling Price</th>
+                                <th>Stock Quantity</th>
+                                <th>Reorder Level</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr>
+                                <td colspan="7" class="loading">Loading products...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Product</h2>
+                <span class="close" onclick="closeProductModal()">&times;</span>
+            </div>
+            <form id="productForm" onsubmit="handleProductSubmit(event)">
+                <div class="form-group">
+                    <label for="productName">Product Name *</label>
+                    <input type="text" id="productName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="costPrice">Cost Price *</label>
+                    <input type="number" id="costPrice" name="costPrice" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="sellingPrice">Selling Price *</label>
+                    <input type="number" id="sellingPrice" name="sellingPrice" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="stockQuantity">Stock Quantity *</label>
+                    <input type="number" id="stockQuantity" name="stockQuantity" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="reorderLevel">Reorder Level *</label>
+                    <input type="number" id="reorderLevel" name="reorderLevel" min="0" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Price Recommendation Modal -->
+    <div id="recommendationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Price Recommendation</h2>
+                <span class="close" onclick="closeRecommendationModal()">&times;</span>
+            </div>
+            <div class="recommendation-content">
+                <div class="price-info">
+                    <div class="price-item">
+                        <label>Current Price:</label>
+                        <span id="currentPrice" class="price-value">$0.00</span>
+                    </div>
+                    <div class="price-item">
+                        <label>Recommended Price:</label>
+                        <span id="recommendedPrice" class="price-value recommended">$0.00</span>
+                    </div>
+                </div>
+                <div class="reasons-section">
+                    <h3>Recommendation Reasons:</h3>
+                    <ul id="reasonsList"></ul>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="closeRecommendationModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
