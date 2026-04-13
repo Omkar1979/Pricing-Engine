@@ -57,7 +57,7 @@ A full-stack .NET 8 Web API application with clean architecture implementation f
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/smart-inventory-pricing-engine.git
+   git clone https://github.com/Omkar1979/smart-inventory-pricing-engine.git
    cd smart-inventory-pricing-engine
    ```
 
